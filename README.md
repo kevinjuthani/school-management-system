@@ -1,3 +1,3 @@
 # school-management-system
 
-Shut up Manish!
+Something great comming soon!
