@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import org.springframework.beans.factory.annotation.Value;
 
 @Entity
-public class StudentModel {
+public class Student {
 	@Id
 	String student_id;
 	String name;

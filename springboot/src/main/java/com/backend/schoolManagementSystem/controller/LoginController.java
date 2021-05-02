@@ -16,9 +16,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import com.backend.schoolManagementSystem.dao.LoginRepo;
 import com.backend.schoolManagementSystem.dao.StudentRepo;
 import com.backend.schoolManagementSystem.dao.TeacherRepo;
-import com.backend.schoolManagementSystem.model.LoginModel;
-import com.backend.schoolManagementSystem.model.StudentModel;
-import com.backend.schoolManagementSystem.model.TeacherModel;
+import com.backend.schoolManagementSystem.model.Login;
+import com.backend.schoolManagementSystem.model.Student;
+import com.backend.schoolManagementSystem.model.Teacher;
 
 @Controller
 public class LoginController {
@@ -28,8 +28,13 @@ public class LoginController {
 	StudentRepo s_repo;
 	@Autowired
 	TeacherRepo t_repo;
+	
+	@RequestMapping("/")
+	public String Index() {
+		return "index.jsp";
+	}
 	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public String login(LoginModel user,HttpServletRequest request) {
+	public String login(Login user,HttpServletRequest request) {
 		try {
 			if(user.getEmail().equals("admin@admin.com")&&(user.getPassword().equals("admin")))
 				return "admin.jsp";

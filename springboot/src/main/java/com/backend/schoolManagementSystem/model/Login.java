@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class LoginModel {
+public class Login {
 	@Id
 	String id;
 	String email;
