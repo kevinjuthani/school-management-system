@@ -108,7 +108,7 @@
         </style>
         <div class="container">
 
-            <form action="" class="form">
+            <form action="login" method="post" class="form">
                 <h2>WELCOME</h2>
                 <input type="email" name="email" class="box" placeholder="Enter Email">
                 <input type="password" name="password" class="box" placeholder="Enter Password">
