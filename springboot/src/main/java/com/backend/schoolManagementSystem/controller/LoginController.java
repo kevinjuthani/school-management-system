@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import com.backend.schoolManagementSystem.dao.LoginRepo;
-import com.backend.schoolManagementSystem.dao.StudentRepo;
-import com.backend.schoolManagementSystem.dao.TeacherRepo;
+import com.backend.schoolManagementSystem.dao.StudentRepository;
+import com.backend.schoolManagementSystem.dao.TeacherRepository;
 import com.backend.schoolManagementSystem.model.Login;
 import com.backend.schoolManagementSystem.model.Student;
 import com.backend.schoolManagementSystem.model.Teacher;
@@ -25,9 +25,9 @@ public class LoginController {
 	@Autowired
 	LoginRepo l_repo;
 	@Autowired
-	StudentRepo s_repo;
+	StudentRepository s_repo;
 	@Autowired
-	TeacherRepo t_repo;
+	TeacherRepository t_repo;
 	
 	@RequestMapping("/")
 	public String Index() {
