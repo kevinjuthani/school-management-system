@@ -36,7 +36,7 @@ public class StudentController {
 
     }
 
-    @GetMapping("/teachers")
+    @GetMapping("/students")
     public ResponseEntity<List<Student>> getAllStudents(){
         List<Student> allStudents = this.studentService.getAllStudents();
         if(allStudents.size() <= 0){
@@ -45,7 +45,7 @@ public class StudentController {
         return ResponseEntity.of(Optional.of(allStudents));
     }
 
-    @GetMapping("/teachers/{id}")
+    @GetMapping("/students/{id}")
     public ResponseEntity<Student> getStudentById(@PathVariable("id") long id){
         Student reqStudent = this.studentService.getStudentById(id);
         if(reqStudent == null){
@@ -67,7 +67,7 @@ public class StudentController {
         }
     }
 
-    @DeleteMapping("/teachers/{id}")
+    @DeleteMapping("/students/{id}")
     public ResponseEntity<Student> deleteStudent(@PathVariable("id") long id){
         Student deletedStudent = null;
         try{

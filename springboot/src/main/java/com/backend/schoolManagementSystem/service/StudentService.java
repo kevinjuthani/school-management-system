@@ -6,7 +6,9 @@ import com.backend.schoolManagementSystem.dao.StudentRepository;
 import com.backend.schoolManagementSystem.model.Student;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class StudentService {
 
     @Autowired
