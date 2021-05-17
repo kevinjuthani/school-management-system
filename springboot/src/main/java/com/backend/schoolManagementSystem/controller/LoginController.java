@@ -23,11 +23,11 @@ import com.backend.schoolManagementSystem.model.Teacher;
 @Controller
 public class LoginController {
 	@Autowired
-	LoginRepo l_repo;
+	LoginRepo loginRepository;
 	@Autowired
-	StudentRepository s_repo;
+	StudentRepository studentRepository;
 	@Autowired
-	TeacherRepository t_repo;
+	TeacherRepository teacherRepository;
 	
 	@RequestMapping("/")
 	public String Index() {
@@ -38,17 +38,17 @@ public class LoginController {
 		try {
 			if(user.getEmail().equals("admin@admin.com")&&(user.getPassword().equals("admin")))
 				return "admin.jsp";
-				String id=l_repo.findPassword(user.getEmail(), user.getPassword());
-				String role=l_repo.findRole(id);
+				String id=loginRepository.findPassword(user.getEmail(), user.getPassword());
+				String role=loginRepository.findRole(id);
 				if(role.equals("1"))
 				{  
 					HttpSession session=request.getSession();
-					session.setAttribute("name",s_repo.findName(id));
+					session.setAttribute("name",studentRepository.findName(id));
 					return "student.jsp";
 				}
 				else {
 					HttpSession session=request.getSession();
-					session.setAttribute("name",t_repo.findName(id));
+					session.setAttribute("name",teacherRepository.findName(id));
 					return "teacher.jsp";
 				}
 		}
