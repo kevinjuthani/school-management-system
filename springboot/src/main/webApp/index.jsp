@@ -1,72 +1,116 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Login | Home</title>
     <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+        integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous" />
     <!-- JQuery-->
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.js"
-      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!--Fonts-->
+    <script src="https://kit.fontawesome.com/3b1fe29ded.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <style> 
+     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
           *{
               margin:0;
               padding:0;
               box-sizing: border-box; 
           }
-          /*container*/
-          .container{
+          .bg-img{
+              background: url('Pictures/login.png');
+              height:100vh;
+              background-size: cover;
+              background-position:center ;
+              
+          }
+          .bg-img:after{
+            position: absolute;
+            content: '';
+            top:0;
+            left:0;
+            height:100%;
+            width:100%;
+            background:rgb(0, 0, 0,0.1);
+          }
+          .content{
+              position: absolute;
+              top:50%;
+              left:50%;
+              transform: translate(-50%, -50%);
+              text-align: center;
+              z-index: 999;
+              width: 370px;
+              text-align: center;
+              padding: 60px 32px;
+              background:rgba(255,255,255,0.01);
+              box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+          }
+          .content header{
+              color: black;
+              font-size:33px;
+              font-weight: 600;
+              margin:0 0 35px 0;
+              font-family: 'Open Sans', sans-serif;
+          }
+          .field{
+              position: relative;
+              height: 45px;
+              width:100%;
               display: flex;
-              height: 500px;
-              width:800px;
-              /*border: 1px solid black;*/
-              margin: auto;
-              margin-top:100px;
-              box-shadow: 15px 15px 20px black;
-              }
-              /*Login Form */
-              .form{
-                  display:flex;
-                  flex-direction:column;
-                  width:50%;
-                  align-items:center;
-                  background-color: whitesmoke;
-              }
-              .form h2{
-                  font-size: 3rem;
-                  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-                  margin:40px;
-              }
-
-              .box{
-                  padding: 12px;
-                  width: 65%;
-                  margin:15px;
-                  border:1px solid black;
-                  outline: none;
-                  border-radius: 20px;
-              }
-              #submit{
+              background:rgba(255,255,255,0.94)
+          }
+          .field input{
+              height:100%;
+              width:100%;
+              background: transparent;
+              border:none;
+              outline:none;
+              font-size:16px;
+              font-family: 'Open Sans', sans-serif;
+          }
+          .show{
+              position: absolute;
+              right:13px;
+              font-size: 13px;
+              font-weight: 700;
+              color:#222;
+              cursor: pointer;
+              display: none;
+              font-family: 'Open Sans', sans-serif;;
+          }
+          .space{
+              margin-top:16px;
+          }
+          .field span{
+              color: #222;
+              width: 40px;
+              line-height:45px;
+          }
+          .pass{
+              text-align: left;
+              margin:10px 0;
+          }
+          .pass a{
+              color:black;
+              font-family:'Open Sans', sans-serif;
+              text-decoration: none;
+          }
+          .pass:hover a{
+              text-decoration: underline;
+          }
+           #submit{
                   padding:12px 30px;
                   width:40%;
                   margin-top:40px;
@@ -76,77 +120,64 @@
                   outline: none;
                   border-radius: 20px;
               }
-              #submit:hover{
+         #submit:hover{
                   cursor:pointer;
                   background-color:rgb(65, 202, 202);
                   }
-                  .form a{
-                      text-decoration: none;
-                      color: black;
-                      margin-top: 20px;
-                  }
-                  .form a:hover{
-                      color: blanchedalmond;
-                  }
-             /*Right Side*/
-                .side{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width:50%;
-                    background-color: #c0a1ef;
-                }
-                .side img{
-                    width: 350px;
-                    height: 450px;
-                }
+            .password:valid ~ .show{
+                display:block;
+            }
+    </style>
 
-          body{
-             background-color:#00c2cb;
-             font-family: 'Open Sans', sans-serif;
-          }
-          
-      </style>
-      <div class="container">
-          
-          <form action="" class="form">
-            <h2>WELCOME</h2>
-              <input type="email" name="email" class="box" placeholder="Enter Email">
-              <input type="password" name="password" class="box" placeholder="Enter Password" id="Pass">
-              <span> <input type="checkbox" onclick="myFunction()">Show Password</span>
-             <input type="submit" value="Sign in" id="submit">
-              <u><br><a href="forgot.html">Forgot Password?</a></br></u>
-          </form>
-          <div class="side">
-              <img src="NewLogin.png" alt="Login Page" width="600" height="1230px">
-          </div>
-      </div>
-      <script>
-        function myFunction() {
-          var x = document.getElementById("Pass");
-          if (x.type === "password") {
-            x.type = "text";
-          } else {
-            x.type = "password";
-          }
+    
+<div class="bg-img">
+    <div class="content">
+        <header>Login</header>
+        <form action="#">
+            <div class="field">
+                <span><i class="fas fa-user"></i></span>
+                <input type="email" required placeholder="Enter Email">
+            </div>
+            <div class="field space">
+                <span class="fa fa-lock"></span>
+                <input type="password" class="password" required placeholder="Enter Password" id="Pass">
+                <span class="show">Show</span>
+            </div>
+            <div class="pass">
+                <a href="forgot.html">Forgot Password?</a>
+            </div>
+             <input type="submit" value="Log in" id="submit">
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    const pass_field = document.querySelector('.password');
+    const show_btn = document.querySelector('.show');
+    show_btn.addEventListener('click',function () {
+        if(pass_field.type == "password"){
+            pass_field.type ="text";
+            show_btn.style.color = "#222";
+            show_btn.textContent = "Hide";
+        }else{
+            pass_field.type = "password";
+            show_btn.style.color = "#222";
+             show_btn.textContent = "Show";
         }
+        
+    });
 
-      </script>
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script
-      src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-      integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-      integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-      integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+</script>
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+    integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+    integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+    integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
