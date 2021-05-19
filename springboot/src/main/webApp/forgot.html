@@ -27,13 +27,15 @@
         .inner-box{
             padding: 20px;
             }
-        .box{
-            padding:12px;
-            margin: 15px;
-            width:400px;
-            margin:0 auto;
-            background-color: whitesmoke;
+        .box {
+            padding: 12px;
+            margin-top: 15px;
+            width: 400px;
+            margin: 0 auto;
+            background:rgba(255,255,255,0.01);
+            box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
             margin-top: 100px;
+            position: relative;
         }
         input[type="email"]{
             padding:12px 30px;
@@ -59,14 +61,18 @@
                   }
         body{
             text-align: center;
-            background-color: #00c2cb;
+            background:url('Pictures/Otherbg.png');
+            height:100vh;
+            background-size: cover;
+            background-position:center ;
+            background-position: absolute;
         }
     </style>
     <div class="box">
         <div class="inner-box">
             <form action="recover.html">
             <h3>Please Enter E-mail Address:</h3>
-            <input type="email" style="outline:none" placeholder="Email Address">
+            <input type="email" placeholder="Email Address">
             
             <input type="submit" value="Send Verification Link" id="submit">
             </form>
