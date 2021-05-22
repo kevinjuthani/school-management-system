@@ -10,5 +10,5 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 	public Student findById(long id);
 
 	@Query("select name from Student where id=?1")
-	String findName(String id);
+	String findName(long id);
 }

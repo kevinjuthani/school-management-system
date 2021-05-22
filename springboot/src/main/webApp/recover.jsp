@@ -81,8 +81,10 @@ pageEncoding="ISO-8859-1"%>
         <div class="inner-box">
            <b> <h3>Email Verification Link Has Been Sent.</h3></b>
             <p style="text-align: center;">We have send a verification code. Please verify your code here.</p>
-            <input type="code" placeholder="Code:">
+        <form action="recoverpassword" method="post">
+            <input type="code" placeholder="Code:" name="code">
             <button name="Verify" id="submit" href="#" >Verify</button>
+        </form>
         </div>
 
     </div>

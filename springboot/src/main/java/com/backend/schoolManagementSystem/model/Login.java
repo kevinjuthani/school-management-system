@@ -6,15 +6,15 @@ import javax.persistence.Id;
 @Entity
 public class Login {
 	@Id
-	String id;
+	long id;
 	String email;
 	String password;
 	String role;
 	String otl;
-	public String getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getEmail() {

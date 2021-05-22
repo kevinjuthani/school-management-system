@@ -70,9 +70,9 @@ pageEncoding="ISO-8859-1"%>
     </style>
     <div class="box">
         <div class="inner-box">
-            <form action="recover.html">
+            <form action="forgotpassword" method="post">
             <h3>Please Enter E-mail Address:</h3>
-            <input type="email" placeholder="Email Address">
+            <input type="email" placeholder="Email Address" name="email">
             
             <input type="submit" value="Send Verification Link" id="submit">
             </form>

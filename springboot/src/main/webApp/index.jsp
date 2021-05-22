@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Login | Home</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
@@ -133,19 +130,20 @@
 <div class="bg-img">
     <div class="content">
         <header>Login</header>
-        <form action="#">
+        <form action="login" method="post">
             <div class="field">
                 <span><i class="fas fa-user"></i></span>
-                <input type="email" required placeholder="Enter Email">
+                <input type="email" required placeholder="Enter Email" name="email">
             </div>
             <div class="field space">
                 <span class="fa fa-lock"></span>
-                <input type="password" class="password" required placeholder="Enter Password" id="Pass">
+                <input type="password" class="password" required placeholder="Enter Password" id="Pass" name="password">
                 <span class="show">Show</span>
             </div>
             <div class="pass">
-                <a href="forgot.html">Forgot Password?</a>
+                <a href="forgot.jsp">Forgot Password?</a>
             </div>
+            <div>
              <input type="submit" value="Log in" id="submit">
             </div>
         </form>

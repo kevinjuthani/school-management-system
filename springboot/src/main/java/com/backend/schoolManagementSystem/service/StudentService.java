@@ -40,4 +40,8 @@ public class StudentService {
     public void deleteAllStudents(){
       this.studentRepository.deleteAll();
     }
+    
+    public String findName(long id) {
+    	return this.studentRepository.findName(id);
+    }
 }

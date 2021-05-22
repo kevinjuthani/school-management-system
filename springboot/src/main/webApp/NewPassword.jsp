@@ -111,20 +111,20 @@ pageEncoding="ISO-8859-1"%>
   
     <div class="container">
     
-    <form action="#!">
+    <form action="setpassword" method="put">
         <div class="box">
        <div class="inner-box">
         <h5 style="text-align: center;">Set a new password:</h5>
         <div class="error-text"></div>
         <div class="field">
-            <input onkeyup="active()" type="password" id="newPass"  class="form-control" placeholder="New password">
+            <input onkeyup="active()" type="password" id="newPass"  class="form-control" placeholder="New password" name="newpassword">
             <label data-error="wrong" data-success="right" for="newPass"></label>
             
         </div>
     
         <div class="field">
             
-            <input onkeyup="active_2()"  type="password" id="newPassConfirm" class="form-control" placeholder="Confirm password" disabled>
+            <input onkeyup="active_2()"  type="password" id="newPassConfirm" class="form-control" placeholder="Confirm password" name="confirmpassword" disabled>
             <label data-error="wrong" data-success="right" for="newPassConfirm"></label>
             <div class="show">Show</div>
         </div>
@@ -134,7 +134,6 @@ pageEncoding="ISO-8859-1"%>
         
     
     </form>
-    </div>
     </div>
     
     <script>
@@ -166,7 +165,7 @@ pageEncoding="ISO-8859-1"%>
                 errorText.style.display = "block";
                 errorText.classList.add("matched");
                 errorText.textContent = "Confirm Password Matched";
-                return false;
+                return true;
             }
         }
         function active_2() {

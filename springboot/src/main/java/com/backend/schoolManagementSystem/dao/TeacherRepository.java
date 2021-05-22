@@ -10,7 +10,7 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long> {
 	public Teacher findById(long id);
 
 	@Query("select name from Teacher where id=?1")
-	String findName(String id);
+	String findName(long id);
 
 	
 }

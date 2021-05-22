@@ -40,4 +40,8 @@ public class TeacherService {
     public void deleteAllTeachers(){
       this.teacherRepository.deleteAll();
     }
+    
+    public String findName(long id) {
+    	return this.teacherRepository.findName(id);
+    }
 }
