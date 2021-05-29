@@ -8,8 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,7 +31,7 @@ import com.backend.schoolManagementSystem.service.TeacherService;
 import com.backend.schoolManagementSystem.util.Constants;
 import com.backend.schoolManagementSystem.util.MailSender;
 
-@Controller
+@RestController
 public class LoginController {
 	@Autowired
 	LoginService loginService;
@@ -38,39 +40,70 @@ public class LoginController {
 	@Autowired
 	TeacherService teacherService; 
 	
-	@RequestMapping("/")
-	public String Index() {
-		return "index.jsp";
+	@GetMapping("/")
+	public ModelAndView Index() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index");
+		return mv;
 	}
-	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public String login(Login user,HttpServletRequest request) {
+	@GetMapping("/forgot.html")
+	public ModelAndView forgot() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("forgot");
+		return mv;
+	}
+	@PostMapping("/login")
+	public ModelAndView login(Login user,HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
 		try {
-			System.out.println(user.getEmail()+" - "+user.getPassword());
-			if(user.getEmail().equals("admin@admin.com")&&(user.getPassword().equals("admin")))
-				return "admin.jsp";
+				
+				System.out.println(user.getEmail()+" - "+user.getPassword());
+				if(user.getEmail().equals("admin@admin.com")&&(user.getPassword().equals("admin")))
+				{
+					mv.setViewName("admin");
+					return mv;
+				}
 				long id=this.loginService.findPassword(user.getEmail(), user.getPassword());
 				int role=this.loginService.findRole(id);
+				int otl=this.loginService.findOtl(id);
 				if(role==1)
 				{  
+					String name=this.studentService.findName(id);
 					HttpSession session=request.getSession();
-					session.setAttribute("name",this.studentService.findName(id));
-					return "student.jsp";
+					if(otl==1)
+					{
+						session.setAttribute("id",id);
+						mv.setViewName("NewPassword");
+						return mv;
+					}
+					else
+					{
+						session.setAttribute("name",name);
+						mv.setViewName("student");
+						mv.addObject("name",name);
+					}
+					return mv;
 				}
 				else {
+					String name=this.teacherService.findName(id);
 					HttpSession session=request.getSession();
-					session.setAttribute("name",this.teacherService.findName(id));
-					return "teacher.jsp";
+					session.setAttribute("name",name);
+					mv.setViewName("teacher");
+					mv.addObject("name",name);
+					return mv;
 				}
 		}
 		catch(Exception e)
 		{
-			return "index.jsp";
+			mv.setViewName("index");
+			return mv;
 		}
 		
 	}
 	@SuppressWarnings("unused")
-	@RequestMapping(value="/forgotpassword",method={RequestMethod.POST,RequestMethod.GET})
-	public String forgotPassword(@RequestParam("email") String email,HttpServletRequest request) {
+	@PostMapping("/forgotpassword")
+	public ModelAndView forgotPassword(@RequestParam("email") String email,HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
 		try {
 			String name;
 			System.out.println(email);
@@ -96,65 +129,82 @@ public class LoginController {
 						+"</h1><br>Enter this to set a new password.<br>Thank you.");
 				session.setAttribute("id",id);
 				session.setAttribute("vcode", vcode);
-				return "recover.jsp";
+				mv.setViewName("recover");
+				return mv;
 			}
 			else {
-				return "forgot.jsp";
+				mv.setViewName("forgot");
+				return mv;
 			}
 		}
 		catch(Exception e)
 		{
-			return "forgot.jsp";
+			mv.setViewName("forgot");
+			return mv;
 		}
 	}
 	
-	@RequestMapping(value="/recoverpassword",method={RequestMethod.POST,RequestMethod.GET})
-	public String recoverPassword(@RequestParam("code") String code,HttpServletRequest request) {
+	@PostMapping("/recoverpassword")
+	public ModelAndView recoverPassword(@RequestParam("code") String code,HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
 		try {
+			
 			System.out.println("user entered:"+code);
 			HttpSession session=request.getSession(false);
 			if(session!=null) {
 				String vcode=(String)session.getAttribute("vcode");
 				if(vcode.equals(""))
-					return "forgot.jsp";
+				{
+					mv.setViewName("forgot");
+					return mv;
+				}
 				System.out.println("in session:"+vcode);
 				if(code.equals(vcode))
 				{
 					session.setAttribute("vcode","");
-					return "NewPassword.jsp";
+					mv.setViewName("NewPassword");
+					return mv;
 				}
 				else {
-					return "recover.jsp";
+					mv.setViewName("recover");
+					return mv;
 				}
 			}
 			else {
-				return "forgot.jsp";
+				mv.setViewName("forgot");
+				return mv;
 			}
 		}
 		catch(Exception e)
 		{
-			return "forgot.jsp";
+			mv.setViewName("forgot");
+			return mv;
 		}
 	}
 	
-	@RequestMapping(value="/setpassword",method={RequestMethod.POST,RequestMethod.GET})
-	public String setPassword(@RequestParam("newpassword") String npassword,@RequestParam("confirmpassword") String cpassword,HttpServletRequest request) {
-			try{
+	@PostMapping("/setpassword")
+	public ModelAndView setPassword(@RequestParam("newpassword") String npassword,@RequestParam("confirmpassword") String cpassword,HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();	
+		try{
+				
 				HttpSession session=request.getSession(false);
 				if(npassword.equals(cpassword))
 				{
 					long id=(long) session.getAttribute("id");
 					loginService.updatePassword(npassword,id);
-					return "index.jsp";
+					mv.setViewName("index");
+					return mv;
 				}
 				else {
-					System.out.println("hi");
-				return "Newpassword.jsp";
+					
+					mv.setViewName("NewPassword");
+					return mv;
 				}
 			}
 			catch(Exception e)
 			{
-				return "Newpassword.jsp";
+				mv.setViewName("NewPassword");
+				return mv;
 			}
 		
 	}

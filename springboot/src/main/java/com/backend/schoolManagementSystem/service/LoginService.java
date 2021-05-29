@@ -22,7 +22,10 @@ public class LoginService {
 	{
 		return Integer.parseInt(this.loginRepository.findRole(id));
 	}
-	
+	public int findOtl(long id)
+	{
+		return Integer.parseInt(this.loginRepository.findOtl(id));
+	}
 	public long findUserEmail(String email)
 	{
 		return Long.parseLong(this.loginRepository.findEmail(email)); 
@@ -38,6 +41,7 @@ public class LoginService {
 		else
 		{
 			user.setPassword(password);
+			user.setOtl("0");
 			this.loginRepository.save(user);
 		}
 	}

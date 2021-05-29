@@ -12,6 +12,9 @@ public interface LoginRepo extends JpaRepository<Login, Long> {
 	@Query("select role from Login where id=?1")
 	String findRole(long id);
 	
+	@Query("select otl from Login where id=?1")
+	String findOtl(long id);
+	
 	@Query("select id from Login where email=?1")
 	String findEmail(String email);
 }
