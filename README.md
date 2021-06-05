@@ -1,3 +1,3 @@
 # school-management-system
 
-Something great comming soon!
+Something great coming soon!
