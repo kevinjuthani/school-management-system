@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <title>Form | Home</title>
+    <!-- Datepicker CSS -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+        integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous" />
+    <!-- JQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- Datepicker src code -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+    </script>
+</head>
+
+<body>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
+        * {
+            margin: 0;
+            list-style: none;
+            padding: 0;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+
+        }
+
+        #Address {
+            width: 250px;
+            height: 50px;
+            overflow-x: visible;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 999;
+            width: 500px;
+            /* text-align: center; */
+            padding: 60px 32px;
+            background: rgba(255, 255, 255, 0.01);
+            box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
+        }
+
+        button {
+            cursor: pointer;
+            padding: 12px 30px;
+            width: 130px;
+            margin-top: 40px;
+            font-weight: bold;
+            border: 1px;
+            outline: none;
+            border-radius: 20px;
+        }
+
+        button:hover {
+            background-color: rgb(65, 202, 202);
+            color: cornsilk;
+        }
+    </style>
+    <div class="container">
+        <form name="myForm" action="#" onsubmit= "return validateForm()"  required>
+
+            <label>First Name: </label>
+            <input name="fname"><br />
+            <label>Last Name:</label>
+            <input name="lname"><br />
+            
+            <label>Email</label>
+            <input type="email" placeholder="Email" name="Email" ><br />
+            <label for="date"> Date of Birth: </label>
+            <input type="datetime-local" name="date" placeholder="dd/mm/yy" id="datepicker" ><br />
+            Enter phone number: <label>+91</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your 10 digit no.: " pattern="[0-9]{10}"
+                required><br />
+            Address:
+            <input type="textarea" id="Address" name="address"> <br /><br />
+           
+            <p required>Select your gender:</p>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label><br>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label><br>
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other">Other</label> <br>
+           
+            <button>Submit</button>
+
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+                var fname = document.forms["myForm"]["fname"].value;
+                if (fname == "") {
+                    alert("First name must be filled out");
+                    return false;
+                }
+                var lname = document.forms["myForm"]["lname"].value;
+                if(lname == ""){
+                    alert("Last name must be filled out");
+                    return false;
+                }
+                var rn = document.forms["myForm"]["rn"].value;
+                if (rn == "") {
+                    alert("Roll number must be filled out");
+                    return false;
+                }
+                var email = document.forms["myForm"]["Email"].value;
+                if (email == "") {
+                    alert("Email must be filled out");
+                    return false;
+                }
+                var dob = document.forms["myForm"]["date"].value;
+                if (dob == "") {
+                    alert(" Date of Birth must be filled out");
+                    return false;
+                }
+                var add = document.forms["myForm"]["address"].value;
+                if (add == "") {
+                    alert("Address must be filled out");
+                    return false;
+                }
+               
+                var gender = document.forms["myForm"]["gender"].value;
+                if(gender == ""){
+                    alert("Gender must be filled");
+                    return false;
+                }
+            }
+    </script>
+</body>
+
+</html>
