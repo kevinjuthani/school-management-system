@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.backend.schoolManagementSystem.dao.LoginRepo;
 import com.backend.schoolManagementSystem.model.Login;
+import com.backend.schoolManagementSystem.model.Student;
 
 @Component
 public class LoginService {
@@ -17,7 +18,9 @@ public class LoginService {
 	{
 		return Long.parseLong(this.loginRepository.findPassword(email, password));
 	}
-	
+	public void createStudentCred(Login user){
+	      this.loginRepository.save(user);
+	}
 	public int findRole(long id)
 	{
 		return Integer.parseInt(this.loginRepository.findRole(id));

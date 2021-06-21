@@ -2,9 +2,13 @@ package com.backend.schoolManagementSystem.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
+import com.backend.schoolManagementSystem.model.Login;
 import com.backend.schoolManagementSystem.model.Student;
+import com.backend.schoolManagementSystem.service.LoginService;
 import com.backend.schoolManagementSystem.service.StudentService;
+import com.backend.schoolManagementSystem.util.MailSender;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,11 +27,27 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
-
-    @PostMapping("/students")
-    public ResponseEntity<Student> createStudent(@RequestBody Student student){
+    @Autowired
+    private LoginService loginService;
+    @PostMapping("/students")//@RequestBody 
+    public ResponseEntity<Student> createStudent(Student student){
+    	System.out.println("Creating account of: "+student.getName());
         try{
           Student addedStudent = this.studentService.createStudent(student);
+          Login user=new Login();
+          user.setId(addedStudent.getId());
+          user.setOtl("1");
+          Random rnd = new Random();
+		  int number = rnd.nextInt(999999);
+		  String pass=String.format("%06d", number);
+	      user.setPassword(pass);
+          user.setEmail(addedStudent.getEmail());
+          user.setRole("1");
+          this.loginService.createStudentCred(user);
+          MailSender.send(addedStudent.getEmail(),"Account Creation","Dear "+addedStudent.getName()+",<br>Provided below is the password "
+					+ "for your newly created account.<br>Kindly login with your emailID and the password given below: <h1>"
+					+ pass
+					+"</h1><br>You would be prompted to set a new password after this.<br>Thank you.");
             return ResponseEntity.of(Optional.of(addedStudent));
         }
         catch(Exception e){

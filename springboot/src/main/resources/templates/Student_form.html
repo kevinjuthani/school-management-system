@@ -21,9 +21,10 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-        $(function () {
+        /*$(function () {
             $("#datepicker").datepicker();
-        });
+            
+        });*/
     </script>
 </head>
 <body>
@@ -75,34 +76,33 @@
         
     </style>
     <div class="container">
-    <form action="#">
+    <form action="students" method="post">
 
-        <label>First Name:</label>
-        <input required><br/>
-        <label>Last Name:</label>
-        <input required><br/>
+        <label>Name:</label>
+        <input type="text" name="name" required><br/>
         <label>Roll number:</label>
-        <input><br/>
+        <input type="text" name="rollNo"><br/>
         <label>Email</label>
-        <input type="email" placeholder="Email" name="Email:" required><br/>
+        <input type="email" placeholder="Email" name="email" required><br/>
         <label for="date"> Date of Birth: </label>
-        <input type="datetime-local" name="date" placeholder="dd/mm/yy" id="datepicker" required><br/>
+        <input type="date" name="dob" placeholder="dd/mm/yy" id="datepicker" required>
+        <!-- input type="datetime-local" name="date" placeholder="dd/mm/yy" id="datepicker" required> --><br/>
         Enter phone number: <label>+91</label>
-        <input type="tel" id="phone" name="phone" placeholder="Your 10 digit no.: " pattern="[0-9]{10}"
+        <input type="tel" id="phone" name="contactNo" placeholder="Your 10 digit no.: " pattern="[0-9]{10}"
             required><br/>
         Address: 
-        <input type="textarea" id="Address" required> <br/><br/>
+        <input type="textarea" id="Address" name="address" required> <br/><br/>
         Guardian's name:
-        <input required><br/>
+        <input type="text" name="guardianName" required><br/>
     <p required >Select your gender:</p>
-    <input type="radio" id="male" name="gender" value="male">
+    <input type="radio" id="M" name="gender" value="M">
     <label for="male">Male</label><br>
-    <input type="radio" id="female" name="gender" value="female">
+    <input type="radio" id="F" name="gender" value="F">
     <label for="female">Female</label><br>
-    <input type="radio" id="other" name="gender" value="other">
+    <input type="radio" id="O" name="gender" value="O">
     <label for="other">Other</label> <br>
     Class:  
-    <select id="dropdown">
+    <select id="dropdown" name="classNo">
         <option value="1">I</option>
         <option value="2">II</option>
         <option value="3">III</option>
@@ -118,11 +118,11 @@
        
     </select><br/>
     Stream: 
-    <select class="dropdown">
-        <option value="1">---</option>
-        <option value="2">Science</option>
-        <option value="3">Arts</option>
-        <option value="4">Commerce</option>
+    <select class="dropdown" name="stream">
+        <option value="-">---</option>
+        <option value="science">Science</option>
+        <option value="arts">Arts</option>
+        <option value="commerce">Commerce</option>
     </select><br/>
    <button>Submit</button>
 

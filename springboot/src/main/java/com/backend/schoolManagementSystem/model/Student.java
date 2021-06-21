@@ -18,6 +18,7 @@ public class Student {
 	String name;
 	String email;
 	String dob;
+	String gender;
 	@Column(name = "contact_no")
 	String contactNo;
 	String address;
@@ -31,12 +32,14 @@ public class Student {
 	
 	public Student() {
 	}
-
-	public Student(String name, String email, String dob, String contactNo, String address, String guardianName,
-			String rollNo, String classNo, String stream) {
+	public Student(Long id, String name, String email, String dob, String gender, String contactNo, String address,
+			String guardianName, String rollNo, String classNo, String stream) {
+		super();
+		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.dob = dob;
+		this.gender = gender;
 		this.contactNo = contactNo;
 		this.address = address;
 		this.guardianName = guardianName;
@@ -44,7 +47,12 @@ public class Student {
 		this.classNo = classNo;
 		this.stream = stream;
 	}
-
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -120,16 +128,17 @@ public class Student {
 	public String getStream() {
 		return stream;
 	}
-
+	
 	public void setStream(String stream) {
 		this.stream = stream;
 	}
-
 	@Override
 	public String toString() {
-		return "Student [address=" + address + ", classNo=" + classNo + ", contactNo=" + contactNo + ", dob=" + dob
-				+ ", email=" + email + ", guardianName=" + guardianName + ", id=" + id + ", name=" + name + ", rollNo="
-				+ rollNo + ", stream=" + stream + "]";
+		return "Student [id=" + id + ", name=" + name + ", email=" + email + ", dob=" + dob + ", gender=" + gender
+				+ ", contactNo=" + contactNo + ", address=" + address + ", guardianName=" + guardianName + ", rollNo="
+				+ rollNo + ", classNo=" + classNo + ", stream=" + stream + "]";
 	}
+
+	
 
 }

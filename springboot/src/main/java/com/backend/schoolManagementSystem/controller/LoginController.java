@@ -46,6 +46,12 @@ public class LoginController {
 		mv.setViewName("index");
 		return mv;
 	}
+	@GetMapping("/createS")
+	public ModelAndView CreateS(){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("Student_form");
+		return mv;
+	}
 	@GetMapping("/forgot.html")
 	public ModelAndView forgot() {
 		ModelAndView mv = new ModelAndView();
